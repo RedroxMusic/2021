@@ -1,0 +1,132 @@
+---
+export interface Props {
+  performerId: string;
+  title: string;
+  layout: string;
+  imgDir: string;
+  artistCaption?: string;
+  performerStyle?: string;
+  titleStyle?: string;
+  imgStyle?: string;
+  pStyle?: string;
+  textStyle?: string;
+}
+
+const {content} = Astro.props;
+const {
+  performerId, title, layout, imgDir, artistCaption, 
+  performerStyle, titleStyle, imgStyle, textStyle, pStyle,
+} = content;
+const contentHtml = content.astro.html;
+
+// hacks to use styling with dynamic id names
+// https://github.com/snowpackjs/astro/issues/1646
+const hackToGenerateDynamicPerformerStyle = () => {
+  if (performerStyle) { 
+    return '<style> \
+      main#main-content div#performer' + performerId + '{ ' +
+        performerStyle +
+      '} \
+    </style>'
+}};
+const hackToGenerateDynamicTitleStyle = () => {
+  if (titleStyle) { 
+    return '<style> \
+      main#main-content div#performer' + performerId + ' div#text p { ' +
+        titleStyle +
+      '} \
+    </style>'
+}};
+const hackToGenerateDynamicImageStyle = () => {
+  if (imgStyle) { 
+    return '<style> \
+      main#main-content div#performer' + performerId + ' img#img { ' +
+        imgStyle +
+      '} \
+    </style>'
+}};
+const hackToGenerateDynamicTextStyle = () => {
+  if (textStyle) { 
+    return '<style> \
+      main#main-content div#performer' + performerId + ' div#text { ' +
+        textStyle +
+      '} \
+    </style>'
+}};
+const hackToGenerateDynamicParagraphStyle = () => {
+  if (textStyle) { 
+    return '<style> \
+      main#main-content div#performer' + performerId + ' div#text p { ' +
+        pStyle +
+      '} \
+    </style>'
+}};
+
+---
+{hackToGenerateDynamicPerformerStyle()}
+{hackToGenerateDynamicTitleStyle()}
+{hackToGenerateDynamicImageStyle()}
+{hackToGenerateDynamicTextStyle()}
+{hackToGenerateDynamicParagraphStyle()}
+
+<div
+  id={"performer"+performerId}
+  class="performer-page"
+>
+  <h2 alt={title}>
+    <object 
+      id="svg"
+      type="image/svg+xml"
+      data={"/assets/imgs/" + imgDir + "/title.svg"}
+    />
+  </h2>
+  <img
+    id="img"
+    src={"/assets/imgs/" + imgDir + `/init.${'jpg'||'png'}`}
+    alt={artistCaption || title}
+    loading="lazy"
+  />
+  <div
+      id="text"
+  >
+    {contentHtml}
+  </div>
+</div>
+
+<style lang="scss">
+  .performer-page {
+    position: relative;
+    font-size: 12px;
+    overflow: hidden;
+    max-width: 768px;
+    z-index: 1;
+
+    #img,
+    #svg {
+      // max-height: 100%;
+      // max-width: 100%;
+    }
+
+    #img,
+    #text {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #img {
+      z-index: -100;
+      object-fit: cover;
+    }
+
+    #svg {
+      z-index: 100;
+      // border: 5px green solid;
+    }
+
+    #text {
+      z-index: 200;
+      // border: 5px blue solid;
+    }
+  }
+</style>

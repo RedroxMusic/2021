@@ -1,9 +1,6 @@
 ---
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-
 const {title} = Astro.props
-let subtitle = 'Accessible Astro Starter'
+let subtitle = 'Redrox Music Festival 2021'
 ---
 
 <html lang="en" dir="ltr">
@@ -13,7 +10,7 @@ let subtitle = 'Accessible Astro Starter'
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,19 +21,16 @@ let subtitle = 'Accessible Astro Starter'
     <link rel="stylesheet" href={Astro.resolve('../styles/globals.css')} />
 
     <!-- open graph -->
-    <meta property="og:title" content="Accessible Astro Starter">
-    <meta property="og:description" content="A starter project with accessible features using Astro static site builder. Contains accessible landmarks, skip links, a dark mode color scheme, better focus outline and keyboard menu navigation.">
+    <meta property="og:title" content="Redrox Music Festival 2021">
+    <meta property="og:description" content="Redrox Music Festival amplifies voices that have been pushed to the margins of society and celebrates the art of live performance as an act of joy and resistance.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://accessible-astro.markteekman.nl/">
-    <meta property="og:image" content="/assets/social-preview-image.png">
+    <meta property="og:url" content="https://RedrocksMusic.github.io/2021">
+    <!-- meta property="og:image" content="/assets/social-preview-image.png" -->
 
     <!-- page title -->
     <title>{title} - {subtitle}</title>
   </head>
   <body>
-
-    <!-- header -->
-    <Header />
 
     <!-- main -->
     <main id="main-content">
@@ -44,9 +38,6 @@ let subtitle = 'Accessible Astro Starter'
       <slot />
 
     </main>
-
-    <!-- footer -->
-    <Footer />
 
   </body>
 </html>
@@ -65,10 +56,6 @@ let subtitle = 'Accessible Astro Starter'
 
     main {
       flex: 1 0 auto;
-    }
-
-    footer {
-      flex-shrink: 0;
     }
   }
 </style>
