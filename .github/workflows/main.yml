@@ -44,7 +44,7 @@ jobs:
         with:
           source-directory: 'dist'
           destination-github-username: RedroxMusic
-          destination-repository-name: ${{ env.deployToRepo }}
+          destination-repository-name: 2021
           user-email: ${{ env.githubEmail }}
           commit-message: Deploy ORIGIN_COMMIT
           target-branch: gh-pages
