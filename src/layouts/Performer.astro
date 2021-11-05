@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/Base'
+import Performer from '../components/Performer'
+
+const {title, content} = Astro.props;
+
+---
+
+<BaseLayout title={title}>
+  <Performer content={content}></Performer>
+</BaseLayout>
+
+<style lang="scss">
+</style>
